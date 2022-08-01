@@ -1,4 +1,4 @@
-#Selenium Account Checkers#
+# Selenium Account Checkers
 
 Just scripts using Selenium to learn more about automation. 
 
