@@ -59,4 +59,4 @@ for index in range(len(users)):
 			print(e)			
 			continue
 
-browser.close()
+
