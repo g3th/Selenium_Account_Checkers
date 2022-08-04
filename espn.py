@@ -71,11 +71,11 @@ for index in range(len(users)):
 		except ElementClickInterceptedException:
 		
 			print('Intercepted, ending.\n')
-			print('(stopped at combo {} \n'.format(users[index], passwords[index])
+			print('(stopped at combo {} \n'.format(users[index], passwords[index]))
 			break
 			
 		except Exception as e:
 		
 			print(e)
-			print('(stopped at combo {} \n'.format(users[index], passwords[index])
+			print('(stopped at combo {} \n'.format(users[index], passwords[index]))
 			break
