@@ -1,5 +1,7 @@
 # Selenium Account Checkers
 
+![Alt text](assets/dazn.png "Dazn Checker")
+
 Just scripts using Selenium to learn more about automation. 
 
 Checks for valid accounts on a variety of services, some using a headless browser which includes a user-agent request header to prevent detection.
