@@ -19,6 +19,8 @@ An IP Address for the service you are checking, as you will be geo-blocked other
 
 The scripts inform you, through conditional checks on the page's existing elements, if the service will deny you access due geographical restrictions.
 
+### Dependencies ###
+
 Selenium webdriver, i.e.:
 
 ``` apt-get install chromium-driver ```
