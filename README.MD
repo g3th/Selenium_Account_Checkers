@@ -1,6 +1,7 @@
 # Selenium Account Checkers
 
 ![Alt text](assets/dazn.png "Dazn Checker")
+![Alt text](assets/hbo.png "HBO max Checker")
 
 Just scripts using Selenium to learn more about automation. 
 
