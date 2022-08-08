@@ -15,6 +15,9 @@ Includes simple scripts to split any combo list.
 
 ### Requires ###
 
+An IP Address for the service you are checking, as you will be geo-blocked otherwise (i.e. for HBO a US IP is required).
+The program informs you if the service will deny you access due geographical restrictions.
+
 Selenium webdriver, i.e.:
 
 ``` apt-get install chromium-driver ```
