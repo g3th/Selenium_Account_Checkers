@@ -13,7 +13,10 @@ def connection_error_try_block():
 		get_Location = parse_request.find_all('div',attrs={'class':'e'})
 		for text in get_Location:
 			if 'Country' in str(text):
-				country = text.text.replace('\n','')		
+				country = text.text.replace('\n','')
+			if 'No location' in str(text):
+				print('No Location data was found for current IP.\nEnding')
+				exit()	
 	except (gaierror, NewConnectionError, ConnectionError):
 		print("Can't connect, please check your connection\nEnding")
 		exit()
