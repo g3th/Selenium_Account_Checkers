@@ -68,8 +68,12 @@ while index != len(users):
 				print(' | {}:{} ---> Success!'.format(users[index],passwords[index]))
 				account_results.write('{}:{} ---> Good Account\n'.format(users[index],passwords[index]))				
 			index +=1				
-		except ElementClickInterceptedException:			
-			print(' | Click Intercepted, iteration index was not incremented.')			
+		except ElementClickInterceptedException:		
+			print(' | Click Intercepted, iteration index was not incremented.')
+		
+		except NoSuchElementException:
+			print(' | Element hidden, iteration index was not incremented.')
+			
 		except InvalidSessionIdException:
 			print('Session terminated unexpectedly.\n')
 			break
