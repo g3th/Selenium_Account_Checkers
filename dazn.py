@@ -1,7 +1,6 @@
 import time
 import os
 import requests
-from modules.connection_error import connection_error_try_block as connection_error
 from bs4 import BeautifulSoup as soup
 from headers.dazn_header import header
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, InvalidSessionIdException
