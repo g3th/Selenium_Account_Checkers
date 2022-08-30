@@ -16,7 +16,7 @@ passwords = []
 Two_Factor = False
 browser_options = Options()
 browser_options.add_argument = ('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
-#browser_options.headless = True
+browser_options.headless = True
 os.makedirs('accounts',exist_ok=True)
 with open(file_directory, 'r') as disney:
 	for line in disney.readlines():
