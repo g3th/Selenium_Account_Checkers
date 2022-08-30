@@ -1,10 +1,8 @@
 import time
 import os
 import requests
-from modules.connection_error import connection_error_try_block as connection_error
 from bs4 import BeautifulSoup as soup
 from headers.disney_header import header
-from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, InvalidSessionIdException
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from pathlib import Path
@@ -28,7 +26,6 @@ while index != len(users):
 		try:
 			print('\rTrying Combo {} out of {}'.format(index+1, len(users)),end='')
 			browser = webdriver.Chrome(options = browser_options)
-			browser.set_window_size(500,700)
 			browser.get(page)
 			time.sleep(7)
 			email_input_box = browser.find_element_by_xpath('//*[@id="email"]')
@@ -73,4 +70,3 @@ while index != len(users):
 		except Exception as e:
 			print(e)
 			break
-
