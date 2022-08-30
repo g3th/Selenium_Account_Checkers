@@ -68,7 +68,7 @@ while index != len(users):
 						print(" | {}:{} ---> Success!".format(users[index],passwords[index]))
 						account_results.write('{}:{} ---> Good Account\n'.format(users[index],passwords[index]))
 			index += 1
-			Two_Factor = False
+			error_on_first_page = False
 			browser.close()
 		except Exception as e:
 			print(e)
