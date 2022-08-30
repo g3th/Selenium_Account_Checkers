@@ -33,11 +33,11 @@ while index < len(users):
 			browser.set_window_size(500,700)
 			browser.set_page_load_timeout(13)
 			browser.get(page)
-			time.sleep(8)
+			time.sleep(5)
 			login_button = browser.find_element_by_xpath('//*[@id="root"]/nav/div[3]/button')
 			login_button.click()
 			browser.switch_to.frame(0)
-			time.sleep(1)
+			time.sleep(2)
 			original_login = browser.find_element_by_xpath('/html/body/div[1]/div/div/footer/p/a')
 			original_login.click()
 			email_box = browser.find_element_by_xpath('/html/body/div[1]/div/div/section/section/form/section/div[1]/div/label/span[2]/input')
@@ -46,7 +46,7 @@ while index < len(users):
 			password_box .send_keys(passwords[index])
 			log_in = browser.find_element_by_xpath('//*[@id="did-ui-view"]/div/section/section/form/section/div[3]/button')
 			log_in.click()
-			time.sleep(8)
+			time.sleep(6)
 			if browser.find_elements_by_xpath('//*[@id="did-ui-view"]/div/section/div/div/div'):
 				invalid_email_text = browser.find_element_by_xpath('//*[@id="did-ui-view"]/div/section/div/div/div').text
 				if 'The credentials you entered are incorrect' in str(invalid_email_text):
@@ -62,11 +62,17 @@ while index < len(users):
 			browser.close()
 			index +=1	
 		except ElementClickInterceptedException:		
-			print(' --> Intercepted, iterator index stayed the same')
-
+			print(' --> Intercepted, Index not incremented')
+			browser.close()
 			continue
 		except TimeoutException:
 			print(' -- Timed out. Index not incremented.')
+			browser.close()
+			continue
+		except NoSuchElementException:
+			print(' --> Element not found, Index not incremented.')
+			browser.close()
+			continue
 
 		except Exception as e:		
 			print(e)
