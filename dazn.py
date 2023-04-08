@@ -16,7 +16,8 @@ users = []
 passwords = []
 browser_options = Options()
 browser_options.add_argument = ('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
-browser_options.headless = False
+browser_options.add_argument = ('--headless')
+#browser_options.headless = True
 os.makedirs('accounts',exist_ok=True)
 
 with open(file_directory, 'r') as dazn:
@@ -32,15 +33,11 @@ while index != len(users):
 			browser = webdriver.Chrome(options = browser_options)
 			browser.set_window_size(500,700)
 			browser.get(page)
-			time.sleep(1)
+			time.sleep(3)
 			if browser.find_elements(By.XPATH,'//*[@id="onetrust-accept-btn-handler"]'):
 				gdpr_accet_all_button = browser.find_element(By.XPATH,'//*[@id="onetrust-accept-btn-handler"]')
 				gdpr_accet_all_button.click()
-				time.sleep(4)
-			if browser.find_elements(By.XPATH,'/html/body/div[3]/div/div[3]/section/header/h1'):
-				pick = browser.find_element(By.XPATH,'/html/body/div[3]/div/div[3]/section/header/h1').text
-				if 'PICK YOUR PLAN' in pick:
-					print(" | {}:{} ---> Expired Account".format(users[index],passwords[index]))					
+				time.sleep(5)				
 			if browser.find_elements(By.XPATH,'//*[@id="root"]/div/div[2]/div/div[4]/div[1]'):
 				geolocked_content_message = browser.find_element_By.xpath('//*[@id="root"]/div/div[2]/div/div[4]/div[1]').text
 				print('\n\nIP: {} | Location: {} '.format(connection_error()[0], connection_error()[1]))
@@ -48,11 +45,14 @@ while index != len(users):
 				exit()
 			email_input_box = browser.find_element(By.XPATH,'//*[@id="email"]')
 			password_input_box = browser.find_element(By.XPATH,'//*[@id="password"]')
-			sign_in_button = browser.find_element(By.XPATH,'//*[@id="root"]/div[1]/main/form/button')
+			sign_in_button = browser.find_element(By.XPATH,'//*[@id="root"]/div[1]/main/div/div/form/button')
 			email_input_box.send_keys(users[index])
 			password_input_box.send_keys(passwords[index])
 			sign_in_button.click()
 			time.sleep(7)
+			if browser.find_elements(By.XPATH,'//*[@id="root"]/div/div[2]/div/div[2]/div/section/header/h1'):
+				print(" | {}:{} ---> Expired Account".format(users[index],passwords[index]))
+				error_flag = True
 			if browser.find_elements(By.XPATH,'//*[@id="password_error"]'):
 				invalid_password = browser.find_element(By.XPATH,'//*[@id="password_error"]').text
 				if 'Your password must contain at least one letter and one digit' in invalid_password:
