@@ -1,6 +1,5 @@
 # Selenium Account Checkers
 
-![Alt text](assets/dazn.png "Dazn Checker")
 ![Alt text](assets/hbo.png "HBO max Checker")
 
 Just scripts using Selenium to learn more about automation. 
@@ -17,7 +16,7 @@ Includes simple scripts to split any combo list.
 
 An IP Address for the service you are checking, as you will be geo-blocked otherwise (i.e. for HBO a US IP is required).
 
-The scripts inform you, through conditional checks on the page's existing elements, if the service will deny you access due geographical restrictions.
+Some scripts inform you, through conditional checks on the page's existing elements, if the service will deny you access due geographical restrictions.
 
 ### Dependencies ###
 
@@ -29,9 +28,12 @@ Selenium webdriver, i.e.:
 
 ``` pip3 install chromedriver-py ```
 
+Pyshadow is now required due to the 'shadowroot' interface obfuscating some elements. This is easier than using Selenium's newly introduced 'shadow_root' attribute:
+
+```pip3 install pyshadow```
+
 ### To do ###
 
 - Get rid of try blocks
 - Use headless for all services
 - Use proper checks to determine if accounts are valid (not try blocks)
-- Can't think now...
