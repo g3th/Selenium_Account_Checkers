@@ -1,15 +1,10 @@
 import time
 import os
-import requests
+
+from selenium.webdriver.chrome.options import Options
 from pyshadow.main import Shadow
-from modules.connection_error import connection_error_try_block as connection_error
-from bs4 import BeautifulStoneSoup as soup
 from headers.hbo_header import header
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, \
-    InvalidSessionIdException
-from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from pathlib import Path
 
@@ -19,10 +14,11 @@ page = 'https://auth.max.com/login'
 users = []
 passwords = []
 browser_options = Options()
-browser_options.add_argument = (
-    'user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 '
-    'Safari/537.36')
-#browser_options.headless = True
+
+browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                             'Chrome/103.0.5060.134 ''Safari/537.36')
+
+browser_options.add_argument('--headless=new')
 os.makedirs('accounts', exist_ok=True)
 try:
     with open(file_directory, 'r') as hbo:
