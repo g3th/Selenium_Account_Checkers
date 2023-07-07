@@ -23,10 +23,10 @@ class ComboSplitter:
             return 1
 
 
-    def return_error(self):
+    def return_error(self, directory):
         match self.error:
             case 1:
-                print("\nNo combo-list found.\n")
+                print("\nNo combo-list found in directory:\n" + directory + "\n")
                 print("Add one, and name it '" + self.combo_name + "' before starting the program.")
                 print("\nEnding.\n")
             case 2:

