@@ -9,7 +9,7 @@ def options():
         print("3) HBO")
         print("4) ESPN+")
         print("5) Paramount")
-        print("6) Peacock")
+        print("6) test")
         print("7) Quit")
         try:
             option = int(input("> "))

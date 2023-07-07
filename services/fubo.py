@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from pathlib import Path
 
-file_directory = str(Path(__file__).parent)+'/fubo'
+file_directory = str(Path(__file__).parent)+'/combolists/fubo'
 page = 'https://www.fubo.tv/signin'
 get_current_ip = 'https://www.iplocation.net/'
 info_list =[]

@@ -18,7 +18,11 @@ def connection_error_try_block():
             if 'No location' in str(text):
                 print('No Location data was found for current IP.\nEnding')
                 exit()
+        print('Current IP: {}'.format(get_IP.text))
+        print('Current Location: {}'.format(country))
+        if 'US' not in str(country):
+            print('Please use a US IP to check accounts.\nEnding.')
+            exit()
     except (gaierror, NewConnectionError, ConnectionError):
         print("Can't connect, please check your connection\nEnding")
         exit()
-    return get_IP.text, country

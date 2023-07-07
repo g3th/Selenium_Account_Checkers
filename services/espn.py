@@ -1,6 +1,6 @@
 import time
 
-from headers.espn_plus import header
+from titles.espn_title import title
 from selenium.webdriver.common.by import By
 from combo_splitters.split_combos import ComboSplitter
 from modules.connection_error import connection_error_try_block as ip_country
@@ -12,9 +12,9 @@ from pathlib import Path
 
 
 def espn():
-	header()
+	title()
 	index =0
-	file_directory = str(Path(__file__).parents[1])+'/espn'
+	file_directory = str(Path(__file__).parents[1])+'/combolists/espn'
 	plain_directory = str(Path(__file__).parents[1])
 	page = 'https://plus.espn.com/'
 	ip, country = ip_country()

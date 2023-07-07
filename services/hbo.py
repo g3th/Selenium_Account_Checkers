@@ -4,32 +4,21 @@ from combo_splitters.split_combos import ComboSplitter
 from modules.connection_error import connection_error_try_block as ip_country
 from selenium.webdriver.chrome.options import Options
 from pyshadow.main import Shadow
-from headers.hbo_header import header
+from titles.hbo_title import title
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from pathlib import Path
 
 
 def hbo():
-    valid_ip = ['United States (US)', 'USA', 'US']
     ip_address, country = ip_country()
-
     print("Current IP: " + ip_address)
     print("Country: " + country)
-
-    ip, country = ip_country()
-    if 'US' not in str(country):
-        print('Current IP: {}'.format(str(ip)))
-        print('Current Location: {}'.format(country))
-        print('Please use a US IP to check accounts.\nEnding.')
-        exit()
-
-    header()
-    file_directory = str(Path(__file__).parents[1]) + '/hbo'
+    ip_country()
+    title()
+    file_directory = str(Path(__file__).parents[1]) + '/combolists/hbo'
     plain_directory = str(Path(__file__).parents[1])
     page = 'https://auth.max.com/login'
-    users = []
-    passwords = []
     browser_options = Options()
     splitter = ComboSplitter(file_directory, "disney")
     try:

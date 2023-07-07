@@ -1,7 +1,7 @@
 import time
 import os
 
-from headers.disney_header import header
+from titles.disney_title import title
 from combo_splitters.split_combos import ComboSplitter
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementClickInterceptedException
@@ -12,8 +12,8 @@ from pathlib import Path
 
 
 def disney():
-    header()
-    file_directory = str(Path(__file__).parents[1]) + '/disney'
+    title()
+    file_directory = str(Path(__file__).parents[1]) + '/combolists/disney'
     plain_directory = str(Path(__file__).parents[1])
     page = 'https://www.disneyplus.com/login'
     login_process_complete = False

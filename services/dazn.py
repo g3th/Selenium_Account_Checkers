@@ -1,7 +1,7 @@
 import time
 import os
 from modules.connection_error import connection_error_try_block as err
-from headers.dazn_header import header
+from titles.dazn_title import title
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium.common.exceptions import InvalidSessionIdException
 from selenium.webdriver.common.by import By
@@ -12,8 +12,8 @@ from pathlib import Path
 
 def dazn():
     connection_error = err()
-    header()
-    file_directory = str(Path(__file__).parents[1]) + '/dazn'
+    title()
+    file_directory = str(Path(__file__).parents[1]) + '/combolists/dazn'
     page = 'https://www.dazn.com/en-GB/signin'
     error_flag = False
     users = []

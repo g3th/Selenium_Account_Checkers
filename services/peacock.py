@@ -8,7 +8,7 @@ from selenium import webdriver
 from pathlib import Path
 
 header()
-file_directory = str(Path(__file__).parent)+'/peacock'
+file_directory = str(Path(__file__).parent)+'/combolists/peacock'
 page = 'https://www.peacocktv.com/signin'
 get_current_ip = 'https://www.iplocation.net/'
 info_list =[]
