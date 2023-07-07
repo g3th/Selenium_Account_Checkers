@@ -11,6 +11,7 @@ Moreover, this method is completely free and does not require paid proxies or pa
 To launch.
 
 ``` Open a Terminal in the program's directory```
+
 ``` launch main.py in your environment of choice (i.e. python3 main.py)```
 
 Some services are still experimental and aren't working properly, but the majority have improved functionality from the initial project.
