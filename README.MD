@@ -2,7 +2,11 @@
 
 ![Alt text](assets/hbo.png "HBO max Checker")
 
-Account checker for various services, which simulates user behaviour and, as such, has near-limitless possibilties. Although checking with ```requests + beautifulsoup + proxies``` is preferred due to speed, logging in with webdriver allows (in many cases) to simulate user behaviour and prevent blocking by services. Moreover, this method is completely free and does not require paid proxies.
+Account checker for various services, which simulates user behaviour and, as such, has near-limitless possibilties. 
+
+Although checking with ```requests + beautifulsoup + proxies``` is preferred due to speed, logging in with webdriver allows (in many cases) to simulate user behaviour and prevent blocking by services. 
+
+Moreover, this method is completely free and does not require paid proxies or paid captcha-solving. Captcha is solvable with existing extensions (i.e. Buster or Hekt), by packing the extension into a .crx and including with ```options.add_extension```. This functionality has currently not been included, although it has been tested with Sling TV.
 
 To launch.
 
@@ -35,7 +39,7 @@ Pyshadow is now required due to the 'shadowroot' interface obfuscating some elem
 
 ```pip3 install pyshadow```
 
-Might require a stealthier version of chromedriver in the future.
+Might require a stealthier version of chromedriver or seleniumwire in the future.
 
 ### To do ###
 
