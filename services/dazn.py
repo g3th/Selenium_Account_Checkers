@@ -13,7 +13,7 @@ from pathlib import Path
 
 def dazn():
     title()
-    file_directory = str(Path(__file__).parents[1]) + '/combolists/combos/dazn'
+    file_directory = str(Path(__file__).parents[1]) + '/combolists/dazn'
     page = 'https://www.dazn.com/en-GB/signin'
     plain_directory = str(Path(__file__).parents[1])
     error_flag = False
