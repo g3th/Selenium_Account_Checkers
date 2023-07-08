@@ -50,6 +50,5 @@ Might require a stealthier version of chromedriver or seleniumwire in the future
 
 ### To do ###
 
-- Get rid of try blocks
-- Use headless for all services
-- Use proper checks to determine if accounts are valid (not try blocks)
+- Fix missing services
+- Try stealth, headers and cookies with seleniumwire, requestium
