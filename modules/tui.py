@@ -9,14 +9,13 @@ def options():
         print("3) HBO")
         print("4) ESPN+")
         print("5) Paramount")
-        print("6) test")
-        print("7) Quit")
+        print("6) Quit")
         try:
             option = int(input("> "))
-            if option not in range(1, 9):
+            if option not in range(1, 7):
                 print("Invalid Option.")
                 nothing = input("Press Enter to continue...")
-            elif option == 8:
+            elif option == 6:
                 print("Goodbye.")
                 break
             else:

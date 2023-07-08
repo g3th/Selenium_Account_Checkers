@@ -19,5 +19,5 @@ if __name__ == "__main__":
         case 5:
             paramount()
         case 6:
-            selenium_requests()
+            exit()
 
