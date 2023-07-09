@@ -22,7 +22,7 @@ def disney():
     try:
         users, passwords = splitter.split_file()
     except TypeError:
-        splitter.return_error()
+        splitter.return_error(plain_directory + '/combolists/')
         exit()
     browser_options = Options()
     browser_options.add_argument(
