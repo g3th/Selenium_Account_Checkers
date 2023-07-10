@@ -29,7 +29,7 @@ def dazn():
     index = 0
     while index != len(users):
         os.makedirs('accounts', exist_ok=True)
-        with open(plain_directory + 'accounts/dazn_working_accounts', 'a') as account_results:
+        with open(plain_directory + '/accounts/dazn_working_accounts', 'a') as account_results:
             try:
                 print('\rTrying Combo {} out of {}'.format(index + 1, len(users)), end='')
                 browser = webdriver.Chrome(options=browser_options)
@@ -43,7 +43,7 @@ def dazn():
                     time.sleep(5)
 
                 if browser.find_elements(By.XPATH, '//*[@id="root"]/div/div[2]/div/div[4]/div[1]'):
-                    print('Country not supported, or blacklisted VPN IP')
+                    print('\nCountry not supported, or blacklisted VPN IP')
                     print('please use a supported location/IP address.\nEnding.\n')
                     exit()
                
