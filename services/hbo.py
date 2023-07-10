@@ -27,7 +27,7 @@ def hbo():
 		exit()
 	browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
 	 'Chrome/103.0.5060.134 ''Safari/537.36')
-	#browser_options.add_argument('--headless=new')
+	browser_options.add_argument('--headless=new')
 	index =0
 	while index != len(users):
 		os.makedirs(plain_directory + '/accounts', exist_ok=True)
