@@ -31,10 +31,6 @@ def hbo():
 	browser_options.add_argument('--headless=new')
 	index =0
 	while index != len(users):
-		if '@' not in users[index]:
-				print('Invalid email format in combo-list.\nPlease check your combos and try again.')
-				print('Ending')
-				exit()
 		os.makedirs(plain_directory + '/accounts', exist_ok=True)
 		with open(plain_directory + '/accounts/hbo_acc', 'a') as account_results:
 			try:
