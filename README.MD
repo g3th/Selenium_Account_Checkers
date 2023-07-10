@@ -20,7 +20,7 @@ To launch.
 
 ``` launch main.py in your environment of choice (i.e. python3 main.py)```
 
-Some services are still experimental and aren't working properly, but the majority have improved functionality from the initial project.
+Some services are still experimental and aren't working properly, but the majority have improved functionality compared to the initial project.
 
 **WARNING:**
 
