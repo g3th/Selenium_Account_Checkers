@@ -39,7 +39,7 @@ def hbo():
 				browser.set_window_size(500, 700)
 				browser.get(page)
 				shadows = Shadow(browser)
-				time.sleep(700)
+				time.sleep(7)
 				email_box = shadows.find_element('input[id="login-username-input"]')
 				password_box = shadows.find_element('input[id="login-password-input"]')
 				sign_in_button = shadows.find_element('button[type="submit"]')
