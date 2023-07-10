@@ -32,10 +32,13 @@ def espn():
 			try:
 				print('\rTrying combo {} out of {}'.format(str(index + 1), len(users)), end='')
 				browser = webdriver.Chrome(options = browser_options)
-				browser.set_window_size(200, 200)
-				browser.set_page_load_timeout(20)
+				browser.set_window_size(600, 600)
 				browser.get(page)
-				time.sleep(5)
+				time.sleep(8)
+				if browser.find_elements(By.XPATH, '//*[@id="kuzco_serverRendered"]/div[6]/div/section'):
+						close_popup = browser.find_element(By.XPATH, '//*[@id="kuzco_serverRendered"]/div[6]/div/button')
+						time.sleep(5)
+						close_popup.click()
 				login_button = browser.find_element(By.XPATH, '//*[@id="root"]/nav/div[3]/button')
 				login_button.click()
 				time.sleep(2)

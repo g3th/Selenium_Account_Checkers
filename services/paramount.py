@@ -17,7 +17,7 @@ def paramount_():
 	title()
 	file_directory = str(Path(__file__).parents[1])+'/combolists/paramount'
 	plain_directory = str(Path(__file__).parents[1])
-	ip_country()
+	ip_country("paramount")
 	page = 'https://www.paramountplus.com/account/signin/'
 	splitter = ComboSplitter(file_directory, "paramount")
 	try:

