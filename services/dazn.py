@@ -18,7 +18,9 @@ def dazn():
     plain_directory = str(Path(__file__).parents[1])
     error_flag = False
     browser_options = Options()
-    browser_options.add_argument('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36')
+    browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                                 'Chrome/103.0.5060.134 ''Safari/537.36')
+    browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
     browser_options.add_argument('--headless=new')
     splitter = ComboSplitter(file_directory, "dazn")
     try:

