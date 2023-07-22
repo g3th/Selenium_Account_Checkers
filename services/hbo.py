@@ -10,8 +10,7 @@ from pyshadow.main import Shadow
 from titles.hbo_title import title
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from pathlib import Path
-
+from pathlib import Path        
 
 def hbo():
     ip_country('hbo')
@@ -29,8 +28,8 @@ def hbo():
         exit()
     browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
                                  'Chrome/103.0.5060.134 ''Safari/537.36')
-    browser_options.add_argument('--disable-logging')
-    #browser_options.add_argument('--headless=new')
+    browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
+    browser_options.add_argument('--headless=new')
     index = 0
     while index != len(users):
         os.makedirs(plain_directory + '/accounts', exist_ok=True)
