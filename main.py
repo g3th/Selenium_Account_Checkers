@@ -1,6 +1,5 @@
 from modules.tui import options
 from services.dazn import dazn
-from tests.exceptions import selenium_requests
 from services.disney import disney
 from services.hbo import hbo
 from services.espn import espn
