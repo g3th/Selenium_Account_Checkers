@@ -32,6 +32,8 @@ An IP Address for the service you are checking, as you will be geo-blocked other
 
 Some scripts inform you, through conditional checks on the page's existing elements, if the service will deny you access due geographical restrictions.
 
+Note: If a service returns errors such as "Try again later" it is advised to use a different IP address and run the program again.
+
 ### Dependencies ###
 
 Selenium webdriver, i.e.:
