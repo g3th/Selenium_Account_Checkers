@@ -34,6 +34,12 @@ Some scripts inform you, through conditional checks on the page's existing eleme
 
 Note: If a service returns errors such as "Try again later" it is advised to use a different IP address and run the program again.
 
+Suggested VPN for each service:
+
+* Nordvpn/ExpressVPN (DAZN Italy/Spain/Germany/Japan)
+* Windscribe/IPVanish (Paramount+ - DAZN Canada)
+* IPVanish (Peacock)
+
 ### Dependencies ###
 
 Selenium webdriver, i.e.:
