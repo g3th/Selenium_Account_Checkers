@@ -22,7 +22,7 @@ def dazn():
     browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
                                  'Chrome/103.0.5060.134 ''Safari/537.36')
     browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
-    #browser_options.add_argument('--headless=new')
+    browser_options.add_argument('--headless=new')
     splitter = ComboSplitter(file_directory, "dazn")
     try:
         users, passwords = splitter.split_file()
