@@ -36,7 +36,7 @@ def disney():
     while index != len(users):
         os.makedirs(plain_directory + '/accounts', exist_ok=True)
         with open(plain_directory + '/accounts/disney_acc', 'a') as account_results:
-            #try:
+            try:
                 print('\rTrying Combo {} out of {}'.format(index + 1, len(users)), end='')
                 browser = webdriver.Chrome(options=browser_options)
                 browser.set_window_size(200,200)
