@@ -39,7 +39,7 @@ def disney():
             try:
                 print('\rTrying Combo {} out of {}'.format(index + 1, len(users)), end='')
                 browser = webdriver.Chrome(options=browser_options)
-                browser.set_window_size(200,200)
+                browser.set_window_size(400,600)
                 browser.get(page)
                 time.sleep(16)
                 if browser.find_elements(By.XPATH, '//*[@id="onetrust-reject-all-handler"]'):
