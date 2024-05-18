@@ -1,3 +1,4 @@
+import logging
 from modules.tui import options
 from services.dazn import dazn
 from services.disney import disney
@@ -6,6 +7,7 @@ from services.espn import espn
 from services.paramount import paramount_ as paramount
 
 if __name__ == "__main__":
+    logging.getLogger().setLevel(logging.CRITICAL)
     service = options()
     match service:
         case 1:
