@@ -22,7 +22,7 @@ def dazn():
     browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
                                  '(KHTML, like Gecko) Chrome/{} Safari/537.36'.format(chrome_version))
     browser_options.add_experimental_option('excludeSwitches',['enable-logging'])
-    browser_options.add_argument('--headless=new')
+    #browser_options.add_argument('--headless=new')
     splitter = ComboSplitter(file_directory, "dazn")
     try:
         users, passwords = splitter.split_file()
@@ -39,7 +39,7 @@ def dazn():
                 browser.set_window_size(500, 700)
                 browser.get(page)
                 time.sleep(8)
-
+#//*[@id="onetrust-reject-all-handler"]
                 if browser.find_elements(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]'):
                     gdpr_accept_all_button = browser.find_element(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]')
                     gdpr_accept_all_button.click()
@@ -49,10 +49,10 @@ def dazn():
                     print('\nCountry not supported, or blacklisted VPN IP')
                     print('please use a supported location/IP address.\nEnding.\n')
                     exit()
-               
-                email_input_box = browser.find_element(By.XPATH, '//input[@data-test-id="EMAIL"]')
-                password_input_box = browser.find_element(By.XPATH, '//input[@data-test-id="PASSWORD"]')
-                sign_in_button = browser.find_element(By.XPATH, '//*[@id="root"]/div[1]/main/form/button')
+
+                email_input_box = browser.find_element(By.XPATH, '//input[@id="email"]')
+                password_input_box = browser.find_element(By.XPATH, '//input[@id="password"]')
+                sign_in_button = browser.find_element(By.XPATH, '//button[@type="submit"]')
                 email_input_box.send_keys(users[index])
                 password_input_box.send_keys(passwords[index])
                 sign_in_button.click()
