@@ -5,6 +5,7 @@ from services.disney import disney
 from services.hbo import hbo
 from services.espn import espn
 from services.paramount import paramount_ as paramount
+from services.direct import direct
 
 if __name__ == "__main__":
     logging.getLogger().setLevel(logging.CRITICAL)
@@ -21,5 +22,7 @@ if __name__ == "__main__":
         case 5:
             paramount()
         case 6:
+            direct()
+        case 7:
             exit()
 

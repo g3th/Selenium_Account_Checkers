@@ -12,14 +12,16 @@ def options():
         print("|    3) HBO              |")
         print("|    4) ESPN+            |")
         print("|    5) Paramount        |")
-        print("|    6) Quit             |")
+        print("|    6) Direct TV        |")
+        print("|    7) Quit             |")
         print("+------------------------+")
         try:
             option = int(input("> "))
-            if option not in range(1, 7):
+            # Non-Inclusive
+            if option not in range(1, 8):
                 print("Invalid Option.")
-                nothing = input("Press Enter to continue...")
-            elif option == 6:
+                input("Press Enter to continue...")
+            elif option == 7:
                 print("Goodbye.")
                 break
             else:

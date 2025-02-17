@@ -7,7 +7,8 @@ from requests.exceptions import ConnectionError
 
 def connection_error_try_block(service_name):
     # populate list as more services are added
-    services = ['dazn', 'disney', 'espn', 'hbo', 'paramount']
+    services = ['espn', 'directTV']
+    country = None
     try:
         get_current_ip = 'https://ipcost.com/'
         request = requests.get(get_current_ip)
@@ -16,13 +17,13 @@ def connection_error_try_block(service_name):
         get_Location = parse_request.find_all('div', attrs={'class': 'e'})
         for text in get_Location:
             if 'Country' in str(text):
-                country = text.text.replace('\n', '').replace("Country ", "")
+                country = text.text.replace("\t", "").replace("\n", "").replace("Country", "")
             if 'No location' in str(text):
                 print('No Location data was found for current IP.\nEnding')
                 exit()
         print('Current IP: {}'.format(get_IP.text))
         print('Current Location: {}'.format(country))
-        if [service for service in services if(service_name in service)] and 'US' not in str(country):
+        if [service for service in services if (service_name in service)] and 'US' not in str(country):
             print('Please use a US IP to check accounts.\nEnding.')
             exit()
     except (gaierror, NewConnectionError, ConnectionError):
