@@ -22,7 +22,8 @@ if __name__ == "__main__":
         case 5:
             paramount()
         case 6:
-            direct()
+            print("Soon..")
+            exit()
         case 7:
             exit()
 
