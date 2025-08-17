@@ -15,6 +15,7 @@ chrome_version = GetChromeVersionForCurrentOS()
 
 
 def dazn():
+    title()
     file_directory = str(Path(__file__).parents[1]) + '/combolists/dazn'
     page = 'https://www.dazn.com/signin'
     plain_directory = str(Path(__file__).parents[1])
