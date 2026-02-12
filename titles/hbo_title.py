@@ -8,4 +8,6 @@ def	title():
 	print('\033[38;5;207m  ███    ███     ███    ██▄ ███    ███      ███   ███   ███   ███    ███   ▐███  ▀███   ') 
 	print('\033[38;5;206m  ███    ███     ███    ███ ███    ███      ███   ███   ███   ███    ███  ▄███     ███▄ ') 
 	print('\033[38;5;170m  ███    █▀    ▄█████████▀   ▀██████▀        ▀█   ███   █▀    ███    █▀  ████       ███▄') 
-	print('-'*90)
+	print("\033[38;5;226m=========== DOWNLOAD MY NEW MOBILE GAME ON THE PLAYSTORE! =========    ")
+	print("\033[38;5;226m	=========== Taurus =========    ")
+	print("\033[38;5;226mhttps://play.google.com/store/apps/details?id=com.taurusthebrickbreakingsaga ")

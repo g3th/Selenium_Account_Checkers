@@ -5,4 +5,6 @@ def	title():
 	print('\33[38;5;45m▐█· ▐█▌▐█·▄▀▀▀█▄▐█▐▐▌▐▀▀▪▄▐█▌▐█▪     ██▀·██▪  █▌▐█▌▄▀▀▀█▄')
 	print('\33[38;5;81m██. ██ ▐█▌▐█▄▪▐███▐█▌▐█▄▄▌ ▐█▀·.    ▐█▪·•▐█▌▐▌▐█▄█▌▐█▄▪▐█')
 	print('\33[38;5;75m▀▀▀▀▀• ▀▀▀ ▀▀▀▀ ▀▀ █▪ ▀▀▀   ▀ •     .▀   .▀▀▀  ▀▀▀  ▀▀▀▀ ')
-	print('---------------------------github.com/g3th------------------------')
+	print("\033[38;5;226m=========== DOWNLOAD MY NEW MOBILE GAME ON THE PLAYSTORE! =========    ")
+	print("\033[38;5;226m	=========== Taurus =========    ")
+	print("\033[38;5;226mhttps://play.google.com/store/apps/details?id=com.taurusthebrickbreakingsaga ")
